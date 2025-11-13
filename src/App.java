@@ -8,11 +8,11 @@ public class App {
         System.out.println("Ingresa el valor de la demanda (D): ");
         int d = lector.nextInt();
         System.out.println("Ingresa el valor del costo de almacenamiento (h): ");
-        int h = lector.nextInt();
+        double h = lector.nextDouble();
         System.out.println("Ingresa el valor del costo de pedido (k): ");
-        int k = lector.nextInt();
-        System.out.println("Ingresa el tiempo que trada en llegar el pedido (L): ");
-        int l = lector.nextInt();
+        double k = lector.nextDouble();
+        System.out.println("Ingresa el tiempo que tarda en llegar el pedido (L): ");
+        double l = lector.nextDouble();
         System.out.println("----------------------------------");
         System.out.println("");
 
@@ -20,10 +20,10 @@ public class App {
         double y = Math.sqrt((2 * d * k) / h);
         System.out.println("La cantidad del pedido es: " + y);
         double t = (double) y / d;
-        System.out.println("El numero se realiza cada : " + t+ "dias");
-        double n = l/t;
+        double n = l / t;
+        System.out.println("El pedido se realiza cada : " + t+ "dias"); 
         double le = l-(Math.floor(n)*t);
-        System.out.println("El punto de reorden es: " + le*d);
+        System.out.println("Cuando el inventario sea menor a:  " + le*d+ " unidades");
         double tcu = (k/(y / d) ) + (y / 2) * h;
         System.out.println("El costo total del inventarios es: " + tcu);
         System.out.println("----------------------------------");
