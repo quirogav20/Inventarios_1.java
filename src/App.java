@@ -48,43 +48,48 @@ public class App {
                     System.out.println("Has seleccionado inventarios con descuentos");
                     System.out.println("Ingresa el valor de la demanda (D): ");
                     int d = lector.nextInt();
-                    System.out.println("Ingresa el valor del costo de almacenamiento por unidad (h): ");
-                    double h = lector.nextDouble();
+                    System.out.println("Ingresa el porcentaje del costo de almacenamiento (ejemplo: 0.20): ");
+                    double ph = lector.nextDouble();
                     System.out.println("Ingresa el valor del costo de pedido (k): ");
                     double k = lector.nextDouble();
-                    System.out.println("Ingresa el precio unitario sin descuento (c): ");
-                    double c = lector.nextDouble();
-                    System.out.println("Ingresa la cantidad minima para obtener descuento (Q1): ");
-                    double q1 = lector.nextDouble();
-                    System.out.println("Ingresa el precio unitario con descuento (c1): ");
+                    System.out.println("Ingresa el precio unitario uno (c1): ");
                     double c1 = lector.nextDouble();
+                    System.out.println("Ingresa la cantidad minima para descuento (Q1): ");
+                    double q1 = lector.nextDouble();
+                    System.out.println("Ingresa el precio unitario dos (c2): ");
+                    double c2 = lector.nextDouble();
                     System.out.println("----------------------------------");
                     System.out.println("");
 
-                    double y = Math.sqrt((2 * d * k) / h);
-                    double tcu1 = (d * c) + (k * d / y) + (y / 2) * h;
-                    System.out.println("Opcion 1 - Sin descuento:");
-                    System.out.println("  Cantidad optima (Y): " + y);
-                    System.out.println("  Costo total: " + tcu1);
+                    double h1 = ph * c1;
+                    double y1 = Math.sqrt((2 * d * k) / h1);
+                    double tcu1 = (d * c1) + (k * d / y1) + (y1 / 2) * h1;
+                    System.out.println("Opcion sin descuento:");
+                    System.out.println("La cantidad del pedido es: " + y1);
+                    System.out.println("El costo total del inventarios es: " + tcu1);
                     System.out.println("");
 
-                    double y1 = Math.sqrt((2 * d * k) / h);
-                    double cantidadDescuento = Math.max(y1, q1);
-                    double tcu2 = (d * c1) + (k * d / cantidadDescuento) + (cantidadDescuento / 2) * h;
-                    System.out.println("Opcion 2 - Con descuento:");
-                    System.out.println("  Cantidad optima (Y): " + cantidadDescuento);
-                    System.out.println("  Costo total: " + tcu2);
+                    double h2 = ph * c2;
+                    double y2 = Math.sqrt((2 * d * k) / h2);
+                    double cantidadDescuento = y2;
+                    if (y2 < q1) {
+                        cantidadDescuento = q1;
+                    }
+                    double tcu2 = (d * c2) + (k * d / cantidadDescuento) + (cantidadDescuento / 2) * h2;
+                    System.out.println("Opcion con descuento:");
+                    System.out.println("La cantidad del pedido es: " + cantidadDescuento);
+                    System.out.println("El costo total del inventarios es: " + tcu2);
                     System.out.println("");
 
                     if (tcu1 < tcu2) {
-                        System.out.println("DECISION: Es mejor ordenar " + y + " unidades SIN descuento");
+                        System.out.println("Conviene ordenar: " + y1 + " unidades sin descuento");
                         System.out.println("Costo total minimo: " + tcu1);
                     } else {
-                        System.out.println("DECISION: Es mejor ordenar " + cantidadDescuento + " unidades CON descuento");
+                        System.out.println("Conviene ordenar: " + cantidadDescuento + " unidades con descuento");
                         System.out.println("Costo total minimo: " + tcu2);
                     }
-                    System.out.println("----------------------------------");
-                    
+
+                    System.out.println("---------------------------------");
                     break;
                 }
                 case 3: {
