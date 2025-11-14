@@ -102,6 +102,7 @@ public class App {
                 }
             }
         } while (option != 3);
+         lector.close();
 
 
     
